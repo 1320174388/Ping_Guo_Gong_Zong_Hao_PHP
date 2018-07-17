@@ -26,8 +26,7 @@ class Right_v1_IsAdmin
         // 获取配置信息HttpKey值
         $httpKey = config('html_config.HTTP_KEY');
         // 获取请求头信息HttpKey值
-        $info = Request::instance()->header();
-        $str = $info['HTTP_KEY']?$info['HTTP_KEY']:'false';
+        $str = Request::header('HTTP_KEY');
         if($str !== $httpKey)
         {
             return redirect('/');
