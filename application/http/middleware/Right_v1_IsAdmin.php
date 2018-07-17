@@ -21,12 +21,12 @@ class Right_v1_IsAdmin
      * 输  出 : {"errNum":102,"retMsg":"权限不足","retData":false}
      * 创  建 : 2018/06/23 10:23
      */
-    public function handle($request,\Closure $next)
+    public function handle(Request $request,\Closure $next)
     {
         // 获取配置信息HttpKey值
         $httpKey = config('html_config.HTTP_KEY');
         // 获取请求头信息HttpKey值
-        $str = Request::header('HTTP_KEY');
+        $str = $request->header('http-key');
         if($str !== $httpKey)
         {
             return redirect('/');
