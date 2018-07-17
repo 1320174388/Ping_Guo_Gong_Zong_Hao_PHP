@@ -14,8 +14,8 @@
 Route::get(
     '/v1/login_module/login_route',
     'login_module/v1.controller.LoginController/loginRoute'
-)->middleward('Right_v1_IsAdmin');
+)->middleware('Right_v1_IsAdmin');
 Route::get(
     '/v1/login_module/login_init',
     'login_module/v1.controller.LoginController/loginInit'
-)->middleward('Right_v1_IsAdmin');
+)->middleware('Right_v1_IsAdmin');
