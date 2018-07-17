@@ -15,7 +15,7 @@ return [
     // 服务器地址
     'hostname'        => 'gz-cdb-9yvp3vjn.sql.tencentcdb.com',
     // 数据库名
-    'database'        => 'gong_zhong_hao_zcgy_kehu',
+    'database'        => 'ping_guo_gong_zhong_hao',
     // 用户名
     'username'        => 'root',
     // 密码
