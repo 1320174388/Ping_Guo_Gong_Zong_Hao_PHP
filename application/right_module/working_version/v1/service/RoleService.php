@@ -17,7 +17,7 @@ class RoleService
      * 功  能 : 添加职位信息
      * 变  量 : --------------------------------------
      * 输  入 : (String) $post['roleName'] => '职位名称';
-     * 输  入 : (String) $post['roleInfo'] => '职位名称';
+     * 输  入 : (String) $post['roleInfo'] => '职位介绍';
      * 输  入 : (String) $post['rightStr'] => '权限标识';
      * 输  入 : (Array)  $rightArr         => '权限标识数组';
      * 输  出 : --------------------------------------

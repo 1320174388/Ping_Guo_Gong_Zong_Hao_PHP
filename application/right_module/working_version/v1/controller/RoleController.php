@@ -20,7 +20,7 @@ class RoleController extends Controller
      * 功  能 : 添加职位信息
      * 变  量 : --------------------------------------
      * 输  入 : (String) $post['roleName'] => '职位名称';
-     * 输  入 : (String) $post['roleInfo'] => '职位名称';
+     * 输  入 : (String) $post['roleInfo'] => '职位介绍';
      * 输  入 : (String) $post['rightStr'] => '权限标识';
      * 输  出 : --------------------------------------
      * 创  建 : 2018/07/18 19:59
