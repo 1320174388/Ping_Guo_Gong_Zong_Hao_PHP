@@ -11,7 +11,7 @@
 // +---------------------------------------------
 // : 前台接口,判断前端是否是有Token值
 // +---------------------------------------------
-Route::group('v1/right_module/', function(){
+Route::group('v1/login_module/', function(){
     /**
      * 路由名称：login_route
      * 传值方式：GET,
