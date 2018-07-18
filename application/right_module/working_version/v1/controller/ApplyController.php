@@ -80,7 +80,7 @@ class ApplyController extends Controller
      * 输  入 : (String) $post['applyCode']       => '验证码';
      * 输  出 : {"errNum":1,"retMsg":"提示信息","retData":false}
      * 输  出 : {"errNum":0,"retMsg":"申请成功","retData":true}
-     * 创  建 : 2018/07/16 11:16
+     * 创  建 : 2018/07/18 13:10
      */
     public function applyInit(Request $request)
     {

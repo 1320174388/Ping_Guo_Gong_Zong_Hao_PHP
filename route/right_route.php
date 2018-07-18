@@ -45,8 +45,7 @@ Route::group('v1/right_module/', function(){
         'apply_route',
         'right_module/v1.controller.ApplyController/applyInit'
     );
-});
-//->middleware('Login_v1_IsToken');
+})->middleware('Login_v1_IsToken');
 
 // +---------------------------------------------
 // : 后台接口,需要权限验证接口
