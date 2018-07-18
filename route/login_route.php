@@ -14,7 +14,7 @@
 Route::get(
     '/v1/login_module/login_route',
     'login_module/v1.controller.LoginController/loginRoute'
-)->middleware('Right_v1_IsAdmin');
+)->middleware('Login_v1_IsToken');
 
 // +----------------------------------
 // : 传值方式：GET  ，功能：通过code换取网页授权access_token，显示首页
@@ -22,4 +22,4 @@ Route::get(
 Route::get(
     '/v1/login_module/login_init',
     'login_module/v1.controller.LoginController/loginInit'
-)->middleware('Right_v1_IsAdmin');
+)->middleware('Login_v1_IsToken');
