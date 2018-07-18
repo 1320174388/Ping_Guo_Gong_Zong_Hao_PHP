@@ -114,7 +114,7 @@ class ApplyController extends Controller
         return returnResponse(1,$validate->getError());
         // 生成验证码
         $code = mt_rand(111111,999999);
-        $phoneNumber = $request->post('phone');
+        $phoneNumber = $request->post('applyPhone');
         $textMessage = '您在中春果业平台做了申请管理员操作，验证码：';
         $textMessage.= $code;
         $textMessage.= '，请于5分钟之内填写。如非本人操作，请忽略本条短信。';
