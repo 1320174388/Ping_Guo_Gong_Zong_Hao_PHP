@@ -30,7 +30,7 @@ class ApplyService
         // 执行数据写入
         $res = (new ApplyDao())->applyCreate($post);
         // 验证数据
-        if($res['msg']=='error') return returnData('error');
+        if($res['msg']=='error') return returnData('error',$res['data']);
         // 返回数据
         return returnData('success',$res['data']);
     }
