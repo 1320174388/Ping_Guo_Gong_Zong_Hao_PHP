@@ -13,6 +13,7 @@ use think\Request;
 use think\facade\Cache;
 use app\login_module\working_version\v1\library\LoginLibrary;
 use app\right_module\working_version\v1\validator\ApplyValidate;
+use app\right_module\working_version\v1\validator\CodeValidate;
 use app\right_module\working_version\v1\library\qcloudSmsLibrary;
 
 class ApplyController extends Controller
@@ -106,7 +107,7 @@ class ApplyController extends Controller
     public function applyCode(Request $request)
     {
         // 引入Validate数据验证器
-        $validate = new ApplyValidate();
+        $validate = new CodeValidate();
         // 判断手机号是否发送
         if(!$validate->check($request->post()))
         // 返回错误数据
