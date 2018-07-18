@@ -91,6 +91,12 @@ class ApplyController extends Controller
         if(!$validate->check($request->post()))
         // 返回错误数据
         return returnResponse(1,$validate->getError());
+        // 获取缓存内验证吗
+        $code = Cache::get($request->post('applyPhone'));
+        // 判断验证码是否正确
+        if($code !== $request->post('applyCode'))
+        // 返回错误数据
+        return returnResponse(1,'验证码错误');
         // 返回正确数据
         return returnResponse(0,'申请成功',true);
     }
