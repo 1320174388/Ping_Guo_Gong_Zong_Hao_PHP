@@ -42,6 +42,7 @@ class RoleDao implements RoleInterface
             $save = $roleModel->save();
             // 验证数据是否保存成功
             if(!$save) return returnData('error','添加职位失败');
+            return returnData('error','123132313213');
             // 处理权限数据格式
             $insertArr = [];
             foreach($rightArr as $k=>$v)
