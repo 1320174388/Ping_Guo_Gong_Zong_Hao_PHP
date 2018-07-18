@@ -29,7 +29,9 @@ class Login_v1_IsToken
         $httpKey = config('html_config.HTTP_KEY');
         // 获取请求头信息HttpKey值,判断Session信息是否存在
         $str = $request->header('http-key');
-        if(($str!==$httpKey)||(!Session::get($strMd5)))
+        if(($str!==$httpKey)
+//            ||(!Session::get($strMd5))
+        )
         {
             return redirect('/');
         }else{
