@@ -141,4 +141,18 @@ class ApplyController extends Controller
         // 返回发送结果
         return returnResponse(0,'发送成功',true);
     }
+
+    /**
+     * 名  称 : applyList()
+     * 功  能 : 获取所有管理员申请信息
+     * 变  量 : --------------------------------------
+     * 输  入 : --------------------------------------
+     * 输  出 : {"errNum":1,"retMsg":"提示信息","retData":false}
+     * 输  出 : {"errNum":0,"retMsg":"发送成功","retData":true}
+     * 创  建 : 2018/07/18 17:09
+     */
+    public function applyList()
+    {
+        return "<h1>获取所有管理员申请信息</h1>";
+    }
 }

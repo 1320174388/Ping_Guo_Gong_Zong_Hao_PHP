@@ -60,6 +60,13 @@ Route::group('v1/right_module/', function(){
 // : 后台接口,需要权限验证接口
 // +---------------------------------------------
 Route::group('v1/right_module/', function(){
-
-});
-//->middleware('Right_v1_IsAdmin');
+    /**
+     * 路由名称：apply_route
+     * 传值方式：GET,
+     * 路由功能：获取所有管理员申请信息
+     */
+    Route::get(
+        'apply_route',
+        'right_module/v1.controller.ApplyController/applyList'
+    );
+})->middleware('Right_v1_IsAdmin');

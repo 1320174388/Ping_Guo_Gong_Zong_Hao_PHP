@@ -10,5 +10,9 @@
 // +----------------------------------------------------------------------
 
 Route::rule('/', function () {
-    return returnResponse(404,'没有数据');
+    return returnResponse(102,'没有数据');
+});
+
+Route::rule('/json_token', function () {
+    return returnResponse(103,'没有权限');
 });
