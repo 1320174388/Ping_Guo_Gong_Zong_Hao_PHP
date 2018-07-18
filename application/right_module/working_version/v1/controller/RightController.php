@@ -29,7 +29,7 @@ class RightController extends Controller
         if($rightList['msg']=='error')
             return returnResponse(1,$rightList['data']);
         // 返回正确数据
-        return returnResponse(0,$rightList['data'],true);
+        return returnResponse(0,'请求成功',$rightList['data']);
 
     }
 }
