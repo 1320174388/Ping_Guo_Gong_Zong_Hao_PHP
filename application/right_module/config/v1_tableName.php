@@ -18,6 +18,8 @@ return [
     'AdminTable' => 'data_admin_users',
     // 职位表
     'RoleTable'  => 'data_admin_roles',
+    // 权限表
+    'RightTable' => 'data_admin_rights',
     // 管理职位管理表
     'AdminRole'  => 'index_user_roles',
     // 职位权限关联表

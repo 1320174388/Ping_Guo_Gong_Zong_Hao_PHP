@@ -22,6 +22,6 @@ class RightModel extends Model
     protected function initialize()
     {
         parent::initialize();
-        $this->table = config('v1_tableName.RoleRight');
+        $this->table = config('v1_tableName.RightTable');
     }
 }
