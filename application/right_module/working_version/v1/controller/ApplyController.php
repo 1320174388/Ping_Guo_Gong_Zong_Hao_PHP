@@ -90,8 +90,8 @@ class ApplyController extends Controller
         $validate = new ApplyValidate();
         // 验证请求数据
         if(!$validate->check($request->post()))
-        // 返回错误数据
-        return returnResponse(1,$validate->getError());
+            // 返回错误数据
+            return returnResponse(1,$validate->getError());
         // 获取缓存内验证吗
         $code = Cache::get($request->post('applyPhone'));
         // 判断验证码是否正确

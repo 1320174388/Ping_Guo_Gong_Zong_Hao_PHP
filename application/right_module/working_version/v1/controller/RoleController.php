@@ -9,19 +9,39 @@
  */
 namespace app\right_module\working_version\v1\controller;
 use think\Controller;
+use think\Request;
+use app\right_module\working_version\v1\validator\RoleValidate;
+use app\right_module\working_version\v1\service\RoleService;
 
 class RoleController extends Controller
 {
     /**
-     * 名  称 : rightPost()
+     * 名  称 : rolePost()
      * 功  能 : 添加职位信息
      * 变  量 : --------------------------------------
-     * 输  入 : --------------------------------------
+     * 输  入 : (String) $post['roleName'] => '职位名称';
+     * 输  入 : (String) $post['roleInfo'] => '职位名称';
+     * 输  入 : (String) $post['rightStr'] => '权限标识';
      * 输  出 : --------------------------------------
      * 创  建 : 2018/07/18 19:59
      */
-    public function rightPost()
+    public function rolePost(Request $request)
     {
-        return "<h1>添加职位信息接口</h1>";
+        // 引入Validate数据验证器
+        $validate = new RoleValidate();
+        // 验证请求数据
+        if(!$validate->check($request->post()))
+            // 返回错误数据
+            return returnResponse(1,$validate->getError());
+
+        // 处理权限标识
+        $rightArr = explode(',',$request->post('rightStr'));
+
+        // 引入Service逻辑层代码
+        $res = (new RoleService())->roleAdd($request->post(),$rightArr);
+        // 验证返回数据
+        if($res) return returnResponse(1,$res['data']);
+        // 返回正确数据
+        return returnResponse(0,$res['data'],true);
     }
 }

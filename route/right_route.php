@@ -82,7 +82,7 @@ Route::group('v1/right_module/', function(){
      */
     Route::post(
         'role_route',
-        'right_module/v1.controller.RoleController/rightPost'
+        'right_module/v1.controller.RoleController/rolePost'
     );
 
     // ---- 权限管理 ----
