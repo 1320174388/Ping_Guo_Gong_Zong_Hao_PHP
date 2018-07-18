@@ -62,8 +62,8 @@ class ApplyController extends Controller
         // 验证token值
         if($array['msg']=='error') return "<h1>{$array['data']}<h1>";
         // 获取用户申请管理员操作页面地址
-        $url = config('qd_html_url.HTTP_URL');
-        $url.= config('qd_html_url.Admin_Register');
+        $url = config('html_config.HTTP_URL');
+        $url.= config('html_config.Admin_Register');
         // 显示注册页面视图
         return "<script>
                     window.location.replace('{$url}?token={$array['data']}');
