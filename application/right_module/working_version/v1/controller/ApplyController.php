@@ -12,10 +12,8 @@ use think\Controller;
 use think\Request;
 use think\facade\Cache;
 use app\login_module\working_version\v1\library\LoginLibrary;
-use app\right_module\working_version\v1\service\ApplyService;
 use app\right_module\working_version\v1\validator\ApplyValidate;
 use app\right_module\working_version\v1\library\qcloudSmsLibrary;
-use app\right_module\working_version\v1\library\SerificationLibrary;
 
 class ApplyController extends Controller
 {
@@ -68,5 +66,58 @@ class ApplyController extends Controller
         return "<script>
                     window.location.replace('{$url}?token={$array['data']}');
                </script>";
+    }
+
+    /**
+     * 名  称 : applyInit()
+     * 功  能 : 执行用户申请管理员操作
+     * 变  量 : --------------------------------------
+     * 输  入 : (String) $post['applyToken']      => '身份令牌';
+     * 输  入 : (String) $post['applyName']       => '用户名';
+     * 输  入 : (String) $post['applyPassward']   => '申请密码';
+     * 输  入 : (String) $post['applyRePassword'] => '申请密码';
+     * 输  入 : (String) $post['applyPhone']      => '手机号';
+     * 输  入 : (String) $post['applyCode']       => '验证码';
+     * 输  出 : {"errNum":1,"retMsg":"提示信息","retData":false}
+     * 输  出 : {"errNum":0,"retMsg":"申请成功","retData":true}
+     * 创  建 : 2018/07/16 11:16
+     */
+    public function applyInit(Request $request)
+    {
+        // 引入Validate数据验证器
+        $validate = new ApplyValidate();
+        // 验证请求数据
+        if(!$validate->check($request->post()))
+        // 返回错误数据
+        return returnResponse(1,$validate->getError());
+        // 返回正确数据
+        return returnResponse(0,'申请成功',true);
+    }
+
+    /**
+     * 名  称 : applyCode()
+     * 功  能 : 给用户发送验证码
+     * 变  量 : --------------------------------------
+     * 输  入 : (String) $get['phone']   => 手机号
+     * 输  出 : ['msg'=>'success','data'=>true]
+     * 创  建 : 2018/07/10 10:54
+     */
+    public function applyCode(Request $request)
+    {
+        // 验证码
+        $code = mt_rand(111111,999999);
+        $phoneNumber = $request->get('phone');
+        $textMessage = '您在中春果业平台做了申请管理员操作，验证码：';
+        $textMessage.= $code;
+        $textMessage.= '，请于5分钟之内填写。如非本人操作，请忽略本条短信。';
+        $res = (new qcloudSmsLibrary())->sendMessige(
+            $phoneNumber,
+            $textMessage
+        );
+        if($res['msg']=='error') return returnResponse(1,'发送失败');
+        // 写入文件缓存
+        Cache::set($phoneNumber,$code,300);
+        // 返回发送结果
+        return returnResponse(1,'发送成功');
     }
 }

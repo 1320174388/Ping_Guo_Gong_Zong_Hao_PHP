@@ -9,7 +9,7 @@
  */
 
 // +---------------------------------------------
-// : 前台接口,判断前端是否是有Token值
+// : 前台接口
 // +---------------------------------------------
 Route::group('v1/right_module/', function(){
     /**
@@ -29,6 +29,21 @@ Route::group('v1/right_module/', function(){
     Route::get(
         'login_register',
         'right_module/v1.controller.ApplyController/applyRegister'
+    );
+});
+
+// +---------------------------------------------
+// : 功能接口,需要权限验证接口
+// +---------------------------------------------
+Route::group('v1/right_module/', function(){
+    /**
+     * 路由名称：apply_route
+     * 传值方式：POST,
+     * 路由功能：管理员申请接口
+     */
+    Route::post(
+        'apply_route',
+        'right_module/v1.controller.ApplyController/applyInit'
     );
 });
 //->middleware('Login_v1_IsToken');
