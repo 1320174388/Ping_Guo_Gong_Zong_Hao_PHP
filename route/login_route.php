@@ -8,18 +8,27 @@
  *  历史记录 :  -----------------------
  */
 
-// +----------------------------------
-// : 传值方式：GET  ，功能：公众号初始化接口
-// +----------------------------------
-Route::get(
-    '/v1/login_module/login_route',
-    'login_module/v1.controller.LoginController/loginRoute'
-)->middleware('Login_v1_IsToken');
-
-// +----------------------------------
-// : 传值方式：GET  ，功能：通过code换取网页授权access_token，显示首页
-// +----------------------------------
-Route::get(
-    '/v1/login_module/login_init',
-    'login_module/v1.controller.LoginController/loginInit'
-)->middleware('Login_v1_IsToken');
+// +---------------------------------------------
+// : 前台接口,判断前端是否是有Token值
+// +---------------------------------------------
+Route::group('v1/right_module/', function(){
+    /**
+     * 路由名称：login_route
+     * 传值方式：GET,
+     * 路由功能：公众号初始化接口
+     */
+    Route::get(
+        'login_route',
+        'login_module/v1.controller.LoginController/loginRoute'
+    );
+    /**
+     * 路由名称：login_init
+     * 传值方式：GET,
+     * 路由功能：通过code换取网页授权access_token，显示首页
+     */
+    Route::get(
+        'login_init',
+        'login_module/v1.controller.LoginController/loginInit'
+    );
+});
+//->middleware('Login_v1_IsToken');
