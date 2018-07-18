@@ -153,6 +153,13 @@ class ApplyController extends Controller
      */
     public function applyList()
     {
-        return "<h1>获取所有管理员申请信息</h1>";
+        // 引入Service代码,写入数据
+        $res = (new ApplyService())->applyAll();
+        // 验证写入数据
+        if($res['msg']=='error')
+            // 返回错误数据
+            return returnResponse(0,$res['data']);
+        // 返回正确数据
+        return returnResponse(0,$res['data'],true);
     }
 }

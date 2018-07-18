@@ -69,6 +69,23 @@ class ApplyDao implements ApplyInterface
         if(!$res) return returnData('error','数据格式错误，申请失败');
         // 返回正确数据
         return returnData('success','申请成功');
+    }
 
+    /**
+     * 名  称 : applySelect()
+     * 功  能 : 声明：获取管理员申请信息
+     * 变  量 : --------------------------------------
+     * 输  入 : --------------------------------------
+     * 输  出 : ['msg'=>'success','data'=>'数据']
+     * 创  建 : 2018/07/18 18:00
+     */
+    public function applySelect()
+    {
+        // 获取所有管理员申请数据
+        $all = ApplyModel::all();
+        // 判断数据是否获取到
+        if(!$all) return returnData('error','当前没有管理员申请');
+        // 返回正确数据
+        return returnData('success',$all);
     }
 }

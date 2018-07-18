@@ -26,4 +26,14 @@ interface ApplyInterface
      * 创  建 : 2018/07/18 15:41
      */
     public function applyCreate($post);
+
+    /**
+     * 名  称 : applySelect()
+     * 功  能 : 声明：获取管理员申请信息
+     * 变  量 : --------------------------------------
+     * 输  入 : --------------------------------------
+     * 输  出 : ['msg'=>'success','data'=>'数据']
+     * 创  建 : 2018/07/18 18:00
+     */
+    public function applySelect();
 }

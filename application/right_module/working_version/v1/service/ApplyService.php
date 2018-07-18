@@ -34,4 +34,22 @@ class ApplyService
         // 返回数据
         return returnData('success',$res['data']);
     }
+
+    /**
+     * 名  称 : applyAll()
+     * 功  能 : 获取所有管理员申请信息
+     * 变  量 : --------------------------------------
+     * 输  入 : --------------------------------------
+     * 输  出 : --------------------------------------
+     * 创  建 : 2018/07/18 17:58
+     */
+    public function applyAll()
+    {
+        // 执行数据写入
+        $res = (new ApplyDao())->applySelect();
+        // 验证数据
+        if($res['msg']=='error') return returnData('error',$res['data']);
+        // 返回数据
+        return returnData('success',$res['data']);
+    }
 }
