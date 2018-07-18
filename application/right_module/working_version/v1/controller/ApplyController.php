@@ -11,10 +11,10 @@ namespace app\right_module\working_version\v1\controller;
 use think\Controller;
 use think\Request;
 use think\facade\Cache;
+use app\login_module\working_version\v1\library\LoginLibrary;
 use app\right_module\working_version\v1\service\ApplyService;
 use app\right_module\working_version\v1\validator\ApplyValidate;
 use app\right_module\working_version\v1\library\qcloudSmsLibrary;
-use app\login_module\working_version\v1\library\LoginLibrary;
 use app\right_module\working_version\v1\library\SerificationLibrary;
 
 class ApplyController extends Controller
@@ -56,7 +56,7 @@ class ApplyController extends Controller
     public function applyRegister(Request $request)
     {
         // 获取code
-        $code = $request->get('code');
+        $code = $request->get('token');
         // 通过code换取网页授权access_token显示首页
         $array = (new LoginLibrary())->loginLibrary($code);
         // 验证token值
