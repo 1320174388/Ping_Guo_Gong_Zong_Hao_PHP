@@ -28,7 +28,6 @@ class LoginLibrary
         $access.= '&secret='.config('v1_config.AppSecret');
         $access.= '&code='.$code;
         $access.= '&grant_type=authorization_code';
-        return returnData('error',$code);
         // curl发送换取access_token
         $wxObject = $this->curlPost($access);
         // 解析wxArray
