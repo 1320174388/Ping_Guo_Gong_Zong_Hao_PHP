@@ -53,7 +53,6 @@ class LoginController extends Controller
     {
         // 通过code换取网页授权access_token显示首页
         $array = (new LoginLibrary())->loginLibrary($request->get('code'));
-        return "<h1>{$request->get('code')}</h1>";
         // 验证token值
         if($array['msg']=='error') return $array['data'];
         // 保存token值到session中
