@@ -34,7 +34,7 @@ class LoginLibrary
         $wxArray = json_decode($wxObject['data'],true);
         // 验证返回数据
         if(!empty($wxArray['errcode'])) {
-            return returnData('error','获取网页授权失败');
+            return returnData('error',json_encode($wxArray));
         }
         // 获取数据库数据
         $data = (new LoginDao())->loginSelect($wxArray);
