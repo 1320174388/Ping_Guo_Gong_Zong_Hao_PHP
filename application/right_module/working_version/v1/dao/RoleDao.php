@@ -26,6 +26,10 @@ class RoleDao implements RoleInterface
      */
     public function roleCreate($post,$rightArr)
     {
+        // 获取职位看是否存在
+        $find = RoleModel::where('role_name',$post['roleName'])->find();
+        // 验证职位是否存在
+        if($find) return returnData('error','职位已存在');
         // 启动事务
         Db::startTrans();
         try {
