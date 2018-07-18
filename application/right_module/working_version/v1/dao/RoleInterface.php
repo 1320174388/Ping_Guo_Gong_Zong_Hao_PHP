@@ -22,5 +22,5 @@ interface RoleInterface
      * 输  出 : ['msg'=>'success','data'=>'数据']
      * 创  建 : 2018/07/18 20:29
      */
-    public function roleCreate();
+    public function roleCreate($post,$rightArr);
 }

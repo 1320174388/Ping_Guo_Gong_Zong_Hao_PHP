@@ -13,7 +13,7 @@ use app\right_module\working_version\v1\dao\RoleDao;
 class RoleService
 {
     /**
-     * 名  称 : roleAll()
+     * 名  称 : roleAdd()
      * 功  能 : 添加职位信息
      * 变  量 : --------------------------------------
      * 输  入 : (String) $post['roleName'] => '职位名称';
@@ -23,7 +23,7 @@ class RoleService
      * 输  出 : --------------------------------------
      * 创  建 : 2018/07/18 20:25
      */
-    public function roleAll($post,$rightArr)
+    public function roleAdd($post,$rightArr)
     {
         // 执行数据写入
         $res = (new RoleDao())->roleCreate($post,$rightArr);
