@@ -56,7 +56,7 @@ class ApplyController extends Controller
     public function applyRegister(Request $request)
     {
         // 获取code
-        $code = $request->get('token');
+        $code = $request->get('code');
         // 通过code换取网页授权access_token显示首页
         $array = (new LoginLibrary())->loginLibrary($code);
         // 验证token值
