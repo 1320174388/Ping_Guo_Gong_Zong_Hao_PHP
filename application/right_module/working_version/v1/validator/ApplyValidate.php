@@ -20,7 +20,7 @@ class ApplyValidate extends Validate
      * 输  入 : (String) $post['applyPassward']   => '申请密码';
      * 输  入 : (String) $post['applyRePassword'] => '申请密码';
      * 输  入 : (String) $post['applyPhone']      => '手机号';
-     * 输  入 : (String) $post['']       => '验证码';
+     * 输  入 : (String) $post['applyCode']       => '验证码';
      * 创  建 : 2018/06/57 15:57
      */
     protected $rule = [

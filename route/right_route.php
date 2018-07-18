@@ -45,6 +45,15 @@ Route::group('v1/right_module/', function(){
         'apply_route',
         'right_module/v1.controller.ApplyController/applyInit'
     );
+    /**
+     * 路由名称：apply_route
+     * 传值方式：POST,
+     * 路由功能：发送验证码
+     */
+    Route::post(
+        'apply_code',
+        'right_module/v1.controller.ApplyController/applyCode'
+    );
 })->middleware('Login_v1_IsToken');
 
 // +---------------------------------------------

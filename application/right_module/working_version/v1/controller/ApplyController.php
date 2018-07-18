@@ -98,15 +98,22 @@ class ApplyController extends Controller
      * 名  称 : applyCode()
      * 功  能 : 给用户发送验证码
      * 变  量 : --------------------------------------
-     * 输  入 : (String) $get['phone']   => 手机号
-     * 输  出 : ['msg'=>'success','data'=>true]
+     * 输  入 : (String) $get['applyPhone']   => 手机号
+     * 输  出 : {"errNum":1,"retMsg":"提示信息","retData":false}
+     * 输  出 : {"errNum":0,"retMsg":"发送成功","retData":true}
      * 创  建 : 2018/07/10 10:54
      */
     public function applyCode(Request $request)
     {
-        // 验证码
+        // 引入Validate数据验证器
+        $validate = new ApplyValidate();
+        // 判断手机号是否发送
+        if(!$validate->check($request->post()))
+        // 返回错误数据
+        return returnResponse(1,$validate->getError());
+        // 生成验证码
         $code = mt_rand(111111,999999);
-        $phoneNumber = $request->get('phone');
+        $phoneNumber = $request->post('phone');
         $textMessage = '您在中春果业平台做了申请管理员操作，验证码：';
         $textMessage.= $code;
         $textMessage.= '，请于5分钟之内填写。如非本人操作，请忽略本条短信。';
@@ -118,6 +125,6 @@ class ApplyController extends Controller
         // 写入文件缓存
         Cache::set($phoneNumber,$code,300);
         // 返回发送结果
-        return returnResponse(1,'发送成功');
+        return returnResponse(0,'发送成功',true);
     }
 }
