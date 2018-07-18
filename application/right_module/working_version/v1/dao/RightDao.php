@@ -25,7 +25,7 @@ class RightDao implements RightInterface
         // 获取所有的权限信息
         $rightList = RightModel::all();
         // 验证权限数据
-        if($rightList['msg']=='error')
+        if(!$rightList)
             return returnData('error','请联系开发者，添加权限');
         // 返回正确信息
         return returnData('success',$rightList);
