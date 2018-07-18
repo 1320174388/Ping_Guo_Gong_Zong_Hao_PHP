@@ -69,4 +69,14 @@ Route::group('v1/right_module/', function(){
         'apply_route',
         'right_module/v1.controller.ApplyController/applyList'
     );
+
+    /**
+     * 路由名称：right_route
+     * 传值方式：GET,
+     * 路由功能：获取所有权限管理信息
+     */
+    Route::get(
+        'right_route',
+        'right_module/v1.controller.RightController/rightList'
+    );
 })->middleware('Right_v1_IsAdmin');

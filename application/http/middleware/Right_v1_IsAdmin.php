@@ -24,7 +24,7 @@ class Right_v1_IsAdmin
     public function handle(Request $request,\Closure $next)
     {
         // 获取域名独立Session信息
-        $strMd5 = md5($_SERVER["SERVER_NAME"].'login_user_token');
+        $strMd5 = md5($_SERVER["SERVER_NAME"].'login_admin_token');
         // 获取配置信息HttpKey值
         $httpKey = config('html_config.HTTP_KEY');
         // 获取请求头信息HttpKey值,判断Session信息是否存在
