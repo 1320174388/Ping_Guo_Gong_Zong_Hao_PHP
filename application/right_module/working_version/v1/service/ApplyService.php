@@ -9,7 +9,6 @@
  */
 namespace app\right_module\working_version\v1\service;
 use app\right_module\working_version\v1\dao\ApplyDao;
-use app\right_module\working_version\v1\dao\AdminDao;
 
 class ApplyService
 {
@@ -29,12 +28,7 @@ class ApplyService
     public function applyAdd($post)
     {
         // 执行数据写入
-        $res = (new ApplyDao())->applyCreate(
-            $post['applyToken'],
-            $post['applyName'],
-            $post['applyPassward'],
-            $post['applyPhone']
-        );
+        $res = (new ApplyDao())->applyCreate($post);
         // 验证数据
         if($res['msg']=='error') return returnData('error');
         // 返回数据

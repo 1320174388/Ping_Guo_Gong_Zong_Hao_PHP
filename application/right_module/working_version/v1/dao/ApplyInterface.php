@@ -9,8 +9,8 @@
  */
 namespace app\right_module\working_version\v1\dao;
 
-interface ApplyInterface{
-
+interface ApplyInterface
+{
     /**
      * 名  称 : applyCreate()
      * 功  能 : 声明：用户申请成为管理员接口
@@ -25,5 +25,5 @@ interface ApplyInterface{
      * 输  出 : ['msg'=>'error'  ,'data'=>false]
      * 创  建 : 2018/07/18 15:41
      */
-    public function applyCreate($token,$applyName,$applyPassward,$applyPhone);
+    public function applyCreate($post);
 }

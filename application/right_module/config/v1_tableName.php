@@ -10,6 +10,8 @@
 return [
     // 用户表
     'LoginTable' => 'data_home_users',
+    // 超级管理员用户表
+    'UniqueTable'=> 'data_admin_unique',
     // 管理员申请表
     'ApplyTable' => 'data_admin_apply',
     // 管理员表

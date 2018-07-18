@@ -100,8 +100,12 @@ class ApplyController extends Controller
         return returnResponse(1,'验证码错误');
         // 引入Service代码,写入数据
         $res = (new ApplyService())->applyAdd($request->post());
+        // 验证写入数据
+        if($res['msg']=='error')
+        // 返回错误数据
+        return returnResponse(0,$res['data']);
         // 返回正确数据
-        return returnResponse(0,'申请成功',$res['data']);
+        return returnResponse(0,$res['data'],true);
     }
 
     /**
