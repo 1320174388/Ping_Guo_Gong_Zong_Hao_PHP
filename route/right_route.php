@@ -60,6 +60,9 @@ Route::group('v1/right_module/', function(){
 // : 后台接口,需要权限验证接口
 // +---------------------------------------------
 Route::group('v1/right_module/', function(){
+
+    // ---- 申请管理 ----
+
     /**
      * 路由名称：apply_route
      * 传值方式：GET,
@@ -69,6 +72,20 @@ Route::group('v1/right_module/', function(){
         'apply_route',
         'right_module/v1.controller.ApplyController/applyList'
     );
+
+    // ---- 职位管理 ----
+
+    /**
+     * 路由名称：role_route
+     * 传值方式：POST,
+     * 路由功能：添加职位
+     */
+    Route::post(
+        'role_route',
+        'right_module/v1.controller.RoleController/rightPost'
+    );
+
+    // ---- 权限管理 ----
 
     /**
      * 路由名称：right_route
