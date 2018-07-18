@@ -30,11 +30,13 @@ Route::group('v1/right_module/', function(){
         'login_register',
         'right_module/v1.controller.ApplyController/applyRegister'
     );
-})->middleware('Login_v1_IsToken');
+});
+//->middleware('Login_v1_IsToken');
 
 // +---------------------------------------------
 // : 后台接口,需要权限验证接口
 // +---------------------------------------------
 Route::group('v1/right_module/', function(){
 
-})->middleware('Right_v1_IsAdmin');
+});
+//->middleware('Right_v1_IsAdmin');
