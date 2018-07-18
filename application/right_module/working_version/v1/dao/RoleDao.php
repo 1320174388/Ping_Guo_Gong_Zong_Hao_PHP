@@ -49,9 +49,7 @@ class RoleDao implements RoleInterface
                 $insertArr[$k] = ['role_index'=>$roleIndex,'right_index'=>$v];
             }
             // 获取配置信息内，职位权限关联表数据
-            $roleRight = config('v1_tableName.AdminRole');
-
-            return returnData('error','123132313213');
+            $roleRight = config('v1_tableName.RoleRight');
             // 写入关联表数据
             $res = Db::name($roleRight)->insertAll($insertArr);
             // 返回数据
