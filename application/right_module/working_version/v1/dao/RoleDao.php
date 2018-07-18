@@ -42,7 +42,6 @@ class RoleDao implements RoleInterface
             $save = $roleModel->save();
             // 验证数据是否保存成功
             if(!$save) return returnData('error','添加职位失败');
-            return returnData('error','123132313213');
             // 处理权限数据格式
             $insertArr = [];
             foreach($rightArr as $k=>$v)
@@ -51,6 +50,8 @@ class RoleDao implements RoleInterface
             }
             // 获取配置信息内，职位权限关联表数据
             $roleRight = config('v1_tableName.AdminRole');
+
+            return returnData('error','123132313213');
             // 写入关联表数据
             $res = Db::name($roleRight)->insertAll($insertArr);
             // 返回数据
