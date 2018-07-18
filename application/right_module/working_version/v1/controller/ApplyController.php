@@ -15,6 +15,7 @@ use app\login_module\working_version\v1\library\LoginLibrary;
 use app\right_module\working_version\v1\validator\ApplyValidate;
 use app\right_module\working_version\v1\validator\CodeValidate;
 use app\right_module\working_version\v1\library\qcloudSmsLibrary;
+use app\right_module\working_version\v1\service\ApplyService;
 
 class ApplyController extends Controller
 {
@@ -97,8 +98,10 @@ class ApplyController extends Controller
         if($code !== $request->post('applyCode'))
         // 返回错误数据
         return returnResponse(1,'验证码错误');
+        // 引入Service代码,写入数据
+        $res = (new ApplyService())->applyAdd($request->post());
         // 返回正确数据
-        return returnResponse(0,'申请成功',true);
+        return returnResponse(0,'申请成功',$res['data']);
     }
 
     /**
