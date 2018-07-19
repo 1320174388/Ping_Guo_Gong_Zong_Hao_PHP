@@ -106,10 +106,7 @@ class ApplyDao implements ApplyInterface
             if(!$res) return returnData('error','处理管理员信息失败');
 
             // 删除原管理员申请信息
-            $del = $applyData->delete();
-
-            // 判断是否写入成功
-            if(!$del) return returnData('error','删除管理员申请失败');
+            $applyData->delete();
 
             // 处理权限数据格式
             $insertArr = [];
@@ -120,7 +117,7 @@ class ApplyDao implements ApplyInterface
                     'role_index'  => $v
                 ];
             }
-
+            return returnData('error','测试');
             // 获取配置信息内，管理员职位关联表信息
             $adminRole = config('v1_tableName.AdminRole');
             // 写入关联表数据
