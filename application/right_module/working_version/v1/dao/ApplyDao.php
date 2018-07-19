@@ -94,7 +94,7 @@ class ApplyDao implements ApplyInterface
             // 实例化管理员Admin模型
             $adminModel = new AdminModel();
 
-            return returnData('error',$applyData['apply_index']);
+            return returnData('error',$applyData->apply_index);
 
             // 处理数据
             $adminModel->admin_index    = $applyData['apply_index'];
