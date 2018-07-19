@@ -93,6 +93,15 @@ Route::group('v1/right_module/', function(){
         'role_route',
         'right_module/v1.controller.RoleController/rolePost'
     );
+    /**
+     * 路由名称：role_route
+     * 传值方式：PUT,
+     * 路由功能：添加职位
+     */
+    Route::put(
+        'role_route',
+        'right_module/v1.controller.RoleController/rolePut'
+    );
 
     // ---- 权限管理 ----
 
