@@ -16,6 +16,19 @@ use app\right_module\working_version\v1\service\RoleService;
 class RoleController extends Controller
 {
     /**
+     * 名  称 : roleGet()
+     * 功  能 : 获取所有职位信息
+     * 变  量 : --------------------------------------
+     * 输  入 : --------------------------------------
+     * 输  出 : --------------------------------------
+     * 创  建 : 2018/07/19 10:28
+     */
+    public function roleGet()
+    {
+        return "<h1>获取所有职位信息</h1>";
+    }
+
+    /**
      * 名  称 : rolePost()
      * 功  能 : 添加职位信息
      * 变  量 : --------------------------------------

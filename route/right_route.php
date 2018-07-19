@@ -77,6 +77,15 @@ Route::group('v1/right_module/', function(){
 
     /**
      * 路由名称：role_route
+     * 传值方式：GET,
+     * 路由功能：获取职位
+     */
+    Route::get(
+        'role_route',
+        'right_module/v1.controller.RoleController/rolePost'
+    );
+    /**
+     * 路由名称：role_route
      * 传值方式：POST,
      * 路由功能：添加职位
      */
