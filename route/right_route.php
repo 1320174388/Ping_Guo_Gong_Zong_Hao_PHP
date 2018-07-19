@@ -77,7 +77,7 @@ Route::group('v1/right_module/', function(){
      * 传值方式：PUT,
      * 路由功能：审核申请管理员接口
      */
-    Route::get(
+    Route::put(
         'apply_route',
         'right_module/v1.controller.ApplyController/applyList'
     );
