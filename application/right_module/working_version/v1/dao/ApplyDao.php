@@ -86,13 +86,10 @@ class ApplyDao implements ApplyInterface
         // 启动事务
         Db::startTrans();
         try {
-
             // 获取申请的管理员信息
             $applyData = ApplyModel::get($applyToken);
-
             // 判断此管理员是否申请
             if(!$applyData) return returnData('error','没有此申请');
-
             // 实例化管理员Admin模型
             $adminModel = new AdminModel();
 
