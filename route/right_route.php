@@ -82,6 +82,18 @@ Route::group('v1/right_module/', function(){
         'right_module/v1.controller.ApplyController/applyPut'
     );
 
+    // ---- 管理列表 ----
+
+    /**
+     * 路由名称：apply_route
+     * 传值方式：GET,
+     * 路由功能：获取所有管理员信息
+     */
+    Route::get(
+        'admin_route',
+        'right_module/v1.controller.AdminController/adminList'
+    );
+
     // ---- 职位管理 ----
 
     /**
