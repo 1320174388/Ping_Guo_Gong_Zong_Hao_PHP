@@ -98,4 +98,20 @@ class RoleController extends Controller
         // 返回正确数据
         return returnResponse(0,$res['data'],true);
     }
+
+    /**
+     * 名  称 : roleDelete()
+     * 功  能 : 删除职位信息
+     * 变  量 : --------------------------------------
+     * 输  入 : (String) $post['roleIndex'] => '职位主键';
+     * 输  入 : (String) $post['roleName']  => '职位名称';
+     * 输  入 : (String) $post['roleInfo']  => '职位介绍';
+     * 输  入 : (String) $post['rightStr']  => '权限标识';
+     * 输  出 : {"errNum":0,"retMsg":"修改成功","retData":true}
+     * 创  建 : 2018/07/19 10:59
+     */
+    public function roleDelete()
+    {
+        return "<h1>删除职位信息</h1>";
+    }
 }

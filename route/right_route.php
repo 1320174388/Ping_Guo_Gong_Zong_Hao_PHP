@@ -102,6 +102,15 @@ Route::group('v1/right_module/', function(){
         'role_route',
         'right_module/v1.controller.RoleController/rolePut'
     );
+    /**
+     * 路由名称：role_route
+     * 传值方式：DELETE,
+     * 路由功能：删除职位
+     */
+    Route::delete(
+        'role_route',
+        'right_module/v1.controller.RoleController/roleDelete'
+    );
 
     // ---- 权限管理 ----
 
