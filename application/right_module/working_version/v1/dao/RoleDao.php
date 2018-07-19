@@ -114,9 +114,7 @@ class RoleDao implements RoleInterface
             $roleModel->role_name  = $post['roleName'];
             $roleModel->role_info  = $post['roleInfo'];
             // 写入数据
-            $save = $roleModel->save();
-            // 验证数据是否保存成功
-            if(!$save) return returnData('error','修改职位失败');
+            $roleModel->save();
             // 处理权限数据格式
             $insertArr = [];
             foreach($rightArr as $k=>$v)
