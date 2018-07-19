@@ -46,8 +46,8 @@ class ApplyDao implements ApplyInterface
         $loginData  = LoginModel::get(1);
         // 判断用户是不是最高管理员
         if(($loginData)&&($post['applyToken']==$loginData['user_token']))
-        // 返回错误数据
-        return returnData('error','您已经是最高管理员，不可申请');
+            // 返回错误数据
+            return returnData('error','您已经是最高管理员，不可申请');
 
         // 判断管理员手机号是否已经被使用
         $Y = ApplyModel::where('apply_token',$post['applyPhone'])->find();
