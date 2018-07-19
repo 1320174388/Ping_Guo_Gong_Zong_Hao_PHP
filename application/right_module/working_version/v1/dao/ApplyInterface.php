@@ -36,4 +36,15 @@ interface ApplyInterface
      * 创  建 : 2018/07/18 18:00
      */
     public function applySelect();
+
+    /**
+     * 名  称 : applyUpdate()
+     * 功  能 : 声明：修改申请的管理员为正式管理员
+     * 变  量 : --------------------------------------
+     * 输  入 : (String) $applyToken => '管理员申请标识';
+     * 输  入 : (Array)  $roleArr    => '职位标识数组';
+     * 输  出 : ['msg'=>'success','data'=>'数据']
+     * 创  建 : 2018/07/19 16:54
+     */
+    public function applyUpdate($applyToken,$roleArr);
 }

@@ -79,7 +79,7 @@ Route::group('v1/right_module/', function(){
      */
     Route::put(
         'apply_route',
-        'right_module/v1.controller.ApplyController/applyList'
+        'right_module/v1.controller.ApplyController/applyPut'
     );
 
     // ---- 职位管理 ----

@@ -158,7 +158,7 @@ class ApplyController extends Controller
         // 验证写入数据
         if($res['msg']=='error')
             // 返回错误数据
-            return returnResponse(0,$res['data']);
+            return returnResponse(1,$res['data']);
         // 返回正确数据
         return returnResponse(0,$res['data'],true);
     }
@@ -167,12 +167,33 @@ class ApplyController extends Controller
      * 名  称 : applyPut()
      * 功  能 : 审核申请管理员接口
      * 变  量 : --------------------------------------
-     * 输  入 : --------------------------------------
+     * 输  入 : (String) $applyToken => '管理员申请标识';
+     * 输  入 : (String) $roleString => '职位主键标识';
      * 输  出 : {"errNum":0,"retMsg":"设置成功","retData":true}
-     * 创  建 : 2018/07/19 16:42
+     * 创  建 : 2018/07/19 16:47
      */
-    public function applyPut()
+    public function applyPut(Request $request)
     {
-        return "<h1>路由：apply_route，功能：审核申请管理员接口</h1>";
+        // 获取管理员标识
+        $applyToken = $request->put('applyToken');
+        // 判断是否发送：管理员申请标识
+        if(!$applyToken) return returnResponse(1,'没有发送管理员申请标识');
+
+        // 获取职位主键标识
+        $roleString = $request->put('roleString');
+        // 判断是否发送：职位主键标识
+        if(!$roleString) return returnResponse(1,'没有发送职位主键标识');
+
+        // 处理权限标识
+        $roleArr = explode(',',$roleString);
+
+        // 引入Service代码,写入数据
+        $res = (new ApplyService())->applyEdit($applyToken,$roleArr);
+        // 验证写入数据
+        if($res['msg']=='error')
+            // 返回错误数据
+            return returnResponse(1,$res['data']);
+        // 返回正确数据
+        return returnResponse(0,$res['data'],true);
     }
 }

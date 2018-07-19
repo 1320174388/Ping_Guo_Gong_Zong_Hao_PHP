@@ -8,6 +8,7 @@
  *  历史记录 :  -----------------------
  */
 namespace app\right_module\working_version\v1\dao;
+use think\Db;
 use app\right_module\working_version\v1\model\ApplyModel;
 use app\right_module\working_version\v1\model\AdminModel;
 use app\login_module\working_version\v1\model\LoginModel;
@@ -72,20 +73,64 @@ class ApplyDao implements ApplyInterface
     }
 
     /**
-     * 名  称 : applySelect()
-     * 功  能 : 声明：获取管理员申请信息
+     * 名  称 : applyUpdate()
+     * 功  能 : 声明：修改申请的管理员为正式管理员
      * 变  量 : --------------------------------------
-     * 输  入 : --------------------------------------
+     * 输  入 : (String) $applyToken => '管理员申请标识';
+     * 输  入 : (Array)  $roleArr    => '职位标识数组';
      * 输  出 : ['msg'=>'success','data'=>'数据']
-     * 创  建 : 2018/07/18 18:00
+     * 创  建 : 2018/07/19 16:54
      */
-    public function applySelect()
+    public function applyUpdate($applyToken,$roleArr)
     {
-        // 获取所有管理员申请数据
-        $all = ApplyModel::all();
-        // 判断数据是否获取到
-        if(!$all) return returnData('error','当前没有管理员申请');
-        // 返回正确数据
-        return returnData('success',$all);
+        // 启动事务
+        Db::startTrans();
+        try {
+
+            // 获取申请的管理员信息
+            $applyData = ApplyModel::get($applyToken);
+            // 实例化管理员Admin模型
+            $adminModel = new AdminModel();
+
+            // 处理数据
+            $adminModel->admin_index    = $applyData['apply_index'];
+            $adminModel->admin_name     = $applyData['apply_name'];
+            $adminModel->admin_passward = $applyData['apply_passward'];
+            $adminModel->admin_phone    = $applyData['apply_phone'];
+            $adminModel->admin_time     = $applyData['apply_time'];
+
+            // 写入数据
+            $res = $adminModel->save();
+            // 判断是否写入成功
+            if(!$res) return returnData('error','处理管理员信息失败');
+
+            // 删除原管理员申请信息
+            $applyData->delete();
+
+            // 处理权限数据格式
+            $insertArr = [];
+            foreach($roleArr as $k=>$v)
+            {
+                $insertArr[$k] = [
+                    'admin_token' => $applyToken,
+                    'role_index'  => $v
+                ];
+            }
+
+            // 获取配置信息内，管理员职位关联表信息
+            $adminRole = config('v1_tableName.AdminRole');
+            // 写入关联表数据
+            $res = Db::name($adminRole)->insertAll($insertArr);
+            // 返回错误数据
+            if(!$res) return returnData('error','设置职位失败');
+
+            // 提交事务
+            Db::commit();
+            return returnData('success','设置成功');
+        } catch (\Exception $e) {
+            // 回滚事务
+            Db::rollback();
+            return returnData('error','设置失败');
+        }
     }
 }

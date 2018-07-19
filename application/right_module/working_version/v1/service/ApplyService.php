@@ -52,4 +52,23 @@ class ApplyService
         // 返回数据
         return returnData('success',$res['data']);
     }
+
+    /**
+     * 名  称 : applyEdit()
+     * 功  能 : 修改申请的管理员为正式管理员
+     * 变  量 : --------------------------------------
+     * 输  入 : (String) $applyToken => '管理员申请标识';
+     * 输  入 : (Array)  $roleArr    => '职位标识数组';
+     * 输  出 : --------------------------------------
+     * 创  建 : 2018/07/19 16:52
+     */
+    public function applyEdit($applyToken,$roleArr)
+    {
+        // 执行数据修改
+        $res = (new ApplyDao())->applyUpdate($applyToken,$roleArr);
+        // 验证数据
+        if($res['msg']=='error') return returnData('error',$res['data']);
+        // 返回数据
+        return returnData('success',$res['data']);
+    }
 }
