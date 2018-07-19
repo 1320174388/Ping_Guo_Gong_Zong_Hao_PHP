@@ -13,7 +13,7 @@ use app\right_module\working_version\v1\model\ApplyModel;
 use app\right_module\working_version\v1\model\AdminModel;
 use app\login_module\working_version\v1\model\LoginModel;
 
-class ApplyDao
+class ApplyDao implements ApplyInterface
 {
     /**
      * 名  称 : applyCreate()
