@@ -28,7 +28,7 @@ class RoleDao implements RoleInterface
         // 验证职位是否存在
         if(!$all) return returnData('error','当前没有添加职位');
         // 返回正确数据
-        return returnData('success','请求成功');
+        return returnData('success',$all);
     }
 
     /**
