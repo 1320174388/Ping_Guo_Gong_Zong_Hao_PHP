@@ -106,7 +106,10 @@ class ApplyDao implements ApplyInterface
             if(!$res) return returnData('error','处理管理员信息失败');
 
             // 删除原管理员申请信息
-            $applyData->delete();
+            $del = $applyData->delete();
+
+            // 判断是否写入成功
+            if(!$del) return returnData('error','删除管理员申请失败');
 
             // 处理权限数据格式
             $insertArr = [];
