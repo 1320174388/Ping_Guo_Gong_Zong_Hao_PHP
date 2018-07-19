@@ -25,7 +25,12 @@ class RoleController extends Controller
      */
     public function roleGet()
     {
-        
+        // 引入Service逻辑层代码
+        $res = (new RoleService())->roleAll();
+        // 验证返回数据
+        if($res['msg']=='error') return returnResponse(1,$res['data']);
+        // 返回正确数据
+        return returnResponse(0,$res['data'],true);
     }
 
     /**

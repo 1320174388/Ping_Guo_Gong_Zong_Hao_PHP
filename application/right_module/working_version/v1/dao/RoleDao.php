@@ -14,6 +14,24 @@ use think\Db;
 class RoleDao implements RoleInterface
 {
     /**
+     * 名  称 : roleSelect()
+     * 功  能 : 声明：获取职位信息
+     * 变  量 : --------------------------------------
+     * 输  入 : --------------------------------------
+     * 输  出 : ['msg'=>'success','data'=>'数据']
+     * 创  建 : 2018/07/19 10:37
+     */
+    public function roleSelect()
+    {
+        // 获取所有职位信息
+        $all = RoleModel::all();
+        // 验证职位是否存在
+        if(!$all) return returnData('error','当前没有添加职位');
+        // 返回正确数据
+        return returnData('success','请求成功');
+    }
+
+    /**
      * 名  称 : roleCreate()
      * 功  能 : 声明：添加职位信息
      * 变  量 : --------------------------------------
@@ -60,7 +78,7 @@ class RoleDao implements RoleInterface
             if(!$res) return returnData('error','添加权限失败');
             // 提交事务
             Db::commit();
-            return returnData('success','添加成功',true);
+            return returnData('success','添加成功');
         } catch (\Exception $e) {
             // 回滚事务
             Db::rollback();

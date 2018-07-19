@@ -12,6 +12,16 @@ namespace app\right_module\working_version\v1\dao;
 interface RoleInterface
 {
     /**
+     * 名  称 : roleSelect()
+     * 功  能 : 声明：获取职位信息
+     * 变  量 : --------------------------------------
+     * 输  入 : --------------------------------------
+     * 输  出 : ['msg'=>'success','data'=>'数据']
+     * 创  建 : 2018/07/19 10:37
+     */
+    public function roleSelect();
+
+    /**
      * 名  称 : roleCreate()
      * 功  能 : 声明：添加职位信息
      * 变  量 : --------------------------------------

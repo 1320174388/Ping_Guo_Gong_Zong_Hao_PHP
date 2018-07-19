@@ -13,6 +13,24 @@ use app\right_module\working_version\v1\dao\RoleDao;
 class RoleService
 {
     /**
+     * 名  称 : roleAll()
+     * 功  能 : 获取职位信息
+     * 变  量 : --------------------------------------
+     * 输  入 : --------------------------------------
+     * 输  出 : --------------------------------------
+     * 创  建 : 2018/07/19 10:35
+     */
+    public function roleAll()
+    {
+        // 引入Dao层代码，获取数据
+        $res = (new RoleDao())->roleSelect();
+        // 验证数据
+        if($res['msg']=='error') return returnData('error',$res['data']);
+        // 返回数据
+        return returnData('success',$res['data']);
+    }
+
+    /**
      * 名  称 : roleAdd()
      * 功  能 : 添加职位信息
      * 变  量 : --------------------------------------
