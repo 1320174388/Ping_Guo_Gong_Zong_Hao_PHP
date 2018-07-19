@@ -161,7 +161,7 @@ class RoleDao implements RoleInterface
             // 实例化RoleModel模型
             $roleModel = RoleModel::get($roleIndex);
             // 判断数据是否存在
-            if(!$roleModel) returnData('error','职位不存在');
+            if(!$roleModel) return returnData('error','职位不存在');
             // 删除数据
             $roleModel->delete();
 
