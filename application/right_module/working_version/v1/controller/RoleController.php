@@ -25,7 +25,7 @@ class RoleController extends Controller
      */
     public function roleGet()
     {
-        return "<h1>获取所有职位信息</h1>";
+        
     }
 
     /**
@@ -53,7 +53,7 @@ class RoleController extends Controller
         // 引入Service逻辑层代码
         $res = (new RoleService())->roleAdd($request->post(),$rightArr);
         // 验证返回数据
-        if($res) return returnResponse(1,$res['data']);
+        if($res['msg']=='error') return returnResponse(1,$res['data']);
         // 返回正确数据
         return returnResponse(0,$res['data'],true);
     }
