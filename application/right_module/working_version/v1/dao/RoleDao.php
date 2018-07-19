@@ -85,4 +85,65 @@ class RoleDao implements RoleInterface
             return returnData('error','添加失败');
         }
     }
+
+    /**
+     * 名  称 : roleUpdate()
+     * 功  能 : 声明：修改职位信息
+     * 变  量 : --------------------------------------
+     * 输  入 : (String) $post['roleIndex'] => '职位主键';
+     * 输  入 : (String) $post['roleName']  => '职位名称';
+     * 输  入 : (String) $post['roleInfo']  => '职位介绍';
+     * 输  入 : (String) $post['rightStr']  => '权限标识';
+     * 输  入 : (Array)  $rightArr          => '权限标识数组';
+     * 输  出 : ['msg'=>'success','data'=>'数据']
+     * 创  建 : 2018/07/19 11:03
+     */
+    public function roleUpdate($post,$rightArr)
+    {
+        // 获取职位看是否存在
+        $find = RoleModel::where('role_name',$post['roleName'])->find();
+        // 验证职位是否存在,并且不是他自己
+        if( ($find) && ($post['roleIndex']!==$find['role_index']) )
+            return returnData('error','职位已存在');
+        // 启动事务
+        Db::startTrans();
+        try {
+            // 实例化RoleModel模型
+            $roleModel = RoleModel::get($post['roleIndex']);
+            // 处理数据格式
+            $roleModel->role_name  = $post['roleName'];
+            $roleModel->role_info  = $post['roleInfo'];
+            // 写入数据
+            $save = $roleModel->save();
+            // 验证数据是否保存成功
+            if(!$save) return returnData('error','修改职位失败');
+            // 处理权限数据格式
+            $insertArr = [];
+            foreach($rightArr as $k=>$v)
+            {
+                $insertArr[$k] = [
+                    'role_index'=>$post['roleIndex'],
+                    'right_index'=>$v
+                ];
+            }
+            // 获取配置信息内，职位权限关联表数据
+            $roleRight = config('v1_tableName.RoleRight');
+            // 删除原关联数据
+            Db::table($roleRight)->where(
+                'role_index',
+                $post['roleIndex']
+            )->delete();
+            // 写入关联表数据
+            $res = Db::name($roleRight)->insertAll($insertArr);
+            // 返回数据
+            if(!$res) return returnData('error','修改权限失败');
+            // 提交事务
+            Db::commit();
+            return returnData('success','修改成功');
+        } catch (\Exception $e) {
+            // 回滚事务
+            Db::rollback();
+            return returnData('error','修改失败');
+        }
+    }
 }
