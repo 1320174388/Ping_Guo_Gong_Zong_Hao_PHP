@@ -96,7 +96,7 @@ Route::group('v1/right_module/', function(){
     /**
      * 路由名称：role_route
      * 传值方式：PUT,
-     * 路由功能：添加职位
+     * 路由功能：修改职位
      */
     Route::put(
         'role_route',
