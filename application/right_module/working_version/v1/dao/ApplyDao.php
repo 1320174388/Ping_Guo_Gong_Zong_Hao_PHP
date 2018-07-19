@@ -93,11 +93,9 @@ class ApplyDao implements ApplyInterface
             if(!$applyData) return returnData('error','没有此申请');
             // 实例化管理员Admin模型
             $adminModel = new AdminModel();
-
-            return returnData('error',json_encode($applyData));
-
+            
             // 处理数据
-            $adminModel->admin_index    = $applyData['apply_index'];
+            $adminModel->admin_token    = $applyData['apply_token'];
             $adminModel->admin_name     = $applyData['apply_name'];
             $adminModel->admin_passward = $applyData['apply_passward'];
             $adminModel->admin_phone    = $applyData['apply_phone'];
