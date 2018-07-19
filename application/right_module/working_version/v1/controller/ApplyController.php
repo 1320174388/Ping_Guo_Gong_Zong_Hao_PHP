@@ -162,4 +162,17 @@ class ApplyController extends Controller
         // 返回正确数据
         return returnResponse(0,$res['data'],true);
     }
+
+    /**
+     * 名  称 : applyPut()
+     * 功  能 : 审核申请管理员接口
+     * 变  量 : --------------------------------------
+     * 输  入 : --------------------------------------
+     * 输  出 : {"errNum":0,"retMsg":"设置成功","retData":true}
+     * 创  建 : 2018/07/19 16:42
+     */
+    public function applyPut()
+    {
+        return "<h1>路由：apply_route，功能：审核申请管理员接口</h1>";
+    }
 }

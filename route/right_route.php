@@ -72,6 +72,15 @@ Route::group('v1/right_module/', function(){
         'apply_route',
         'right_module/v1.controller.ApplyController/applyList'
     );
+    /**
+     * 路由名称：apply_route
+     * 传值方式：PUT,
+     * 路由功能：审核申请管理员接口
+     */
+    Route::get(
+        'apply_route',
+        'right_module/v1.controller.ApplyController/applyList'
+    );
 
     // ---- 职位管理 ----
 
