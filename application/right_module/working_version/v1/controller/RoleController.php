@@ -103,15 +103,22 @@ class RoleController extends Controller
      * 名  称 : roleDelete()
      * 功  能 : 删除职位信息
      * 变  量 : --------------------------------------
-     * 输  入 : (String) $post['roleIndex'] => '职位主键';
-     * 输  入 : (String) $post['roleName']  => '职位名称';
-     * 输  入 : (String) $post['roleInfo']  => '职位介绍';
-     * 输  入 : (String) $post['rightStr']  => '权限标识';
-     * 输  出 : {"errNum":0,"retMsg":"修改成功","retData":true}
+     * 输  入 : (String) $roleIndex => '职位主键';
+     * 输  出 : {"errNum":0,"retMsg":"删除成功","retData":true}
      * 创  建 : 2018/07/19 10:59
      */
-    public function roleDelete()
+    public function roleDelete(Request $request)
     {
-        return "<h1>删除职位信息</h1>";
+        // 获取职位主键
+        $roleIndex = $request->delete('roleIndex');
+        // 判断职位组件是否发送,返回错误数据
+        if(!$roleIndex) return returnResponse(1,'请发送职位主键');
+
+        // 引入Service逻辑层代码
+        $res = (new RoleService())->roleDel($roleIndex);
+        // 验证返回数据
+        if($res['msg']=='error') return returnResponse(1,$res['data']);
+        // 返回正确数据
+        return returnResponse(0,$res['data'],true);
     }
 }

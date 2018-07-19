@@ -144,4 +144,40 @@ class RoleDao implements RoleInterface
             return returnData('error','修改失败');
         }
     }
+
+    /**
+     * 名  称 : roleDelete()
+     * 功  能 : 声明：删除职位信息
+     * 变  量 : --------------------------------------
+     * 输  入 : (String) $roleIndex => '职位主键';
+     * 输  出 : ['msg'=>'success','data'=>'数据']
+     * 创  建 : 2018/07/19 16:23
+     */
+    public function roleDelete($roleIndex)
+    {
+        // 启动事务
+        Db::startTrans();
+        try {
+            // 实例化RoleModel模型
+            $roleModel = RoleModel::get($roleIndex);
+            // 删除数据
+            $roleModel->delete();
+
+            // 获取配置信息内，职位权限关联表数据
+            $roleRight = config('v1_tableName.RoleRight');
+            // 删除原关联数据
+            Db::table($roleRight)->where(
+                'role_index',
+                $roleIndex
+            )->delete();
+
+            // 提交事务
+            Db::commit();
+            return returnData('success','删除成功');
+        } catch (\Exception $e) {
+            // 回滚事务
+            Db::rollback();
+            return returnData('error','删除失败');
+        }
+    }
 }

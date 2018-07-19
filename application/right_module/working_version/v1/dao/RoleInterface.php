@@ -47,4 +47,14 @@ interface RoleInterface
      * 创  建 : 2018/07/19 11:03
      */
     public function roleUpdate($post,$rightArr);
+
+    /**
+     * 名  称 : roleDelete()
+     * 功  能 : 声明：删除职位信息
+     * 变  量 : --------------------------------------
+     * 输  入 : (String) $roleIndex => '职位主键';
+     * 输  出 : ['msg'=>'success','data'=>'数据']
+     * 创  建 : 2018/07/19 16:23
+     */
+    public function roleDelete($roleIndex);
 }

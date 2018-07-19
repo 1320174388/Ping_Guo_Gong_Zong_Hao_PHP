@@ -72,4 +72,22 @@ class RoleService
         // 返回数据
         return returnData('success',$res['data']);
     }
+
+    /**
+     * 名  称 : roleDel()
+     * 功  能 : 删除职位信息
+     * 变  量 : --------------------------------------
+     * 输  入 : (String) $roleIndex => '职位主键';
+     * 输  出 : --------------------------------------
+     * 创  建 : 2018/07/19 14:43
+     */
+    public function roleDel($roleIndex)
+    {
+        // 执行数据删除
+        $res = (new RoleDao())->roleDelete($roleIndex);
+        // 验证数据
+        if($res['msg']=='error') return returnData('error',$res['data']);
+        // 返回数据
+        return returnData('success',$res['data']);
+    }
 }
