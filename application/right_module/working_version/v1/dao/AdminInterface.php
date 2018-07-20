@@ -44,5 +44,5 @@ interface AdminInterface
      * 输  出 : ['msg'=>'success','data'=>'数据']
      * 创  建 : 2018/07/20 15:36
      */
-    public function adminDelete();
+    public function adminDelete($adminToken);
 }
