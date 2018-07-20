@@ -66,7 +66,7 @@ class AdminController extends Controller
      * 输  出 : {"errNum":1,"retMsg":"删除成功","retData":true}
      * 创  建 : 2018/07/20 15:26
      */
-    public function adminDel()
+    public function adminDel(Request $request)
     {
         // 引入AdminService代码,获取所有管理员信息
         $res = (new AdminService())->adminDel($request->put('adminToken'));
