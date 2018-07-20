@@ -50,7 +50,7 @@ class AdminService
         // 验证请求数据
         if(!$validate->check($put))
             // 返回错误数据
-            return returnData(1,$validate->getError());
+            return returnData('error',$validate->getError());
 
         // 处理职位标识
         $roleArr = explode(',',$put['roleString']);
