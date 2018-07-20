@@ -9,6 +9,7 @@
  */
 namespace app\right_module\working_version\v1\controller;
 use think\Controller;
+use app\right_module\working_version\v1\service\AdminService;
 
 class AdminController extends Controller
 {
@@ -17,11 +18,18 @@ class AdminController extends Controller
      * 功  能 : 获取所有管理员信息
      * 变  量 : --------------------------------------
      * 输  入 : --------------------------------------
-     * 输  出 : {"errNum":1,"retMsg":"请求成功","retData":false}
+     * 输  出 : {"errNum":1,"retMsg":"请求成功","retData":"数据"}
      * 创  建 : 2018/07/20 01:11
      */
     public function adminList()
     {
-        return "<h1>获取所有管理员信息</h1>";
+        // 引入AdminService代码,获取所有管理员信息
+        $adminList = (new AdminService())->adminAll();
+        // 验证写入数据
+        if($adminList['msg']=='error')
+            // 返回错误数据
+            return returnResponse(1,$adminList['data']);
+        // 返回正确数据
+        return returnResponse(0,'请求成功',$adminList['data']);
     }
 }
