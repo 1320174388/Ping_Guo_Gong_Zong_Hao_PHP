@@ -57,4 +57,24 @@ class AdminController extends Controller
         // 返回正确数据
         return returnResponse(0,$res['data'],true);
     }
+
+    /**
+     * 名  称 : adminDel()
+     * 功  能 : 删除管理员信息
+     * 变  量 : --------------------------------------
+     * 输  入 : (String) $put['adminToken']      => '管理员标识';
+     * 输  出 : {"errNum":1,"retMsg":"删除成功","retData":true}
+     * 创  建 : 2018/07/20 15:26
+     */
+    public function adminDel()
+    {
+        // 引入AdminService代码,获取所有管理员信息
+        $res = (new AdminService())->adminDel($request->put('adminToken'));
+        // 验证写入数据
+        if($res['msg']=='error')
+            // 返回错误数据
+            return returnResponse(1,$res['data']);
+        // 返回正确数据
+        return returnResponse(0,$res['data'],true);
+    }
 }

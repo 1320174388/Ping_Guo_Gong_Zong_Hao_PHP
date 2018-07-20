@@ -35,4 +35,14 @@ interface AdminInterface
      * 创  建 : 2018/07/20 14:58
      */
     public function adminUpdate($put,$roleArr);
+
+    /**
+     * 名  称 : adminDelete()
+     * 功  能 : 声明：删除管理员信息
+     * 变  量 : --------------------------------------
+     * 输  入 : (String) $adminToken => '管理员标识';
+     * 输  出 : ['msg'=>'success','data'=>'数据']
+     * 创  建 : 2018/07/20 15:36
+     */
+    public function adminDelete();
 }

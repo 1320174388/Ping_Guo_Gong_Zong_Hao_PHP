@@ -85,7 +85,7 @@ Route::group('v1/right_module/', function(){
     // ---- 管理列表 ----
 
     /**
-     * 路由名称：apply_route
+     * 路由名称：admin_route
      * 传值方式：GET,
      * 路由功能：获取所有管理员信息
      */
@@ -94,13 +94,22 @@ Route::group('v1/right_module/', function(){
         'right_module/v1.controller.AdminController/adminList'
     );
     /**
-     * 路由名称：apply_route
+     * 路由名称：admin_route
      * 传值方式：PUT,
      * 路由功能：修改管理员信息
      */
     Route::put(
         'admin_route',
         'right_module/v1.controller.AdminController/adminPut'
+    );
+    /**
+     * 路由名称：admin_route
+     * 传值方式：DELETE,
+     * 路由功能：删除管理员信息
+     */
+    Route::delete(
+        'admin_route',
+        'right_module/v1.controller.AdminController/adminDel'
     );
 
     // ---- 职位管理 ----

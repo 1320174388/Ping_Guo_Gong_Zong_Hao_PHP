@@ -95,4 +95,45 @@ class AdminDao implements AdminInterface
             return returnData('error','修改失败');
         }
     }
+
+    /**
+     * 名  称 : adminDelete()
+     * 功  能 : 声明：删除管理员信息
+     * 变  量 : --------------------------------------
+     * 输  入 : (String) $adminToken => '管理员标识';
+     * 输  出 : ['msg'=>'success','data'=>'数据']
+     * 创  建 : 2018/07/20 15:36
+     */
+    public function adminDelete($adminToken)
+    {
+        // 启动事务
+        Db::startTrans();
+        try {
+            // 获取申请的管理员信息
+            $adminModel = AdminModel::get($adminToken);
+
+            // 判断此管理员是否申请
+            if(!$adminModel) return returnData('error','没有此管理员');
+
+            // 删除数据
+            $adminModel->delete();
+
+            // 获取配置信息内，管理员职位关联表信息
+            $adminRole = config('v1_tableName.AdminRole');
+
+            // 删除原关联数据
+            Db::table($adminRole)->where(
+                'admin_token',
+                $adminToken
+            )->delete();
+
+            // 提交事务
+            Db::commit();
+            return returnData('success','删除成功');
+        } catch (\Exception $e) {
+            // 回滚事务
+            Db::rollback();
+            return returnData('error','删除失败');
+        }
+    }
 }

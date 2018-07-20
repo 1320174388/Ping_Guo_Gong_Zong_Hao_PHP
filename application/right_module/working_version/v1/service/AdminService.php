@@ -26,9 +26,9 @@ class AdminService
         // 执行数据获取
         $res = (new AdminDao())->adminSelect();
         // 验证数据
-        if($res['msg']=='error') return returnData('error',$res['data']);
+        if ($res['msg'] == 'error') return returnData('error', $res['data']);
         // 返回数据
-        return returnData('success',$res['data']);
+        return returnData('success', $res['data']);
     }
 
     /**
@@ -48,18 +48,36 @@ class AdminService
         // 引入Validate数据验证器
         $validate = new AdminValidate();
         // 验证请求数据
-        if(!$validate->check($put))
+        if (!$validate->check($put))
             // 返回错误数据
-            return returnData('error',$validate->getError());
+            return returnData('error', $validate->getError());
 
         // 处理职位标识
-        $roleArr = explode(',',$put['roleString']);
+        $roleArr = explode(',', $put['roleString']);
 
         // 执行数据获取
-        $res = (new AdminDao())->adminUpdate($put,$roleArr);
+        $res = (new AdminDao())->adminUpdate($put, $roleArr);
         // 验证数据
-        if($res['msg']=='error') return returnData('error',$res['data']);
+        if ($res['msg'] == 'error') return returnData('error', $res['data']);
         // 返回数据
-        return returnData('success',$res['data']);
+        return returnData('success', $res['data']);
+    }
+
+    /**
+     * 名  称 : adminDel()
+     * 功  能 : 删除管理员信息
+     * 变  量 : --------------------------------------
+     * 输  入 : (String) $adminToken => '管理员标识';
+     * 输  出 : --------------------------------------
+     * 创  建 : 2018/07/20 14:22
+     */
+    public function adminDel($adminToken)
+    {
+        // 执行数据删除
+        $res = (new AdminDao())->adminDelete($adminToken);
+        // 验证数据
+        if ($res['msg'] == 'error') return returnData('error', $res['data']);
+        // 返回数据
+        return returnData('success', $res['data']);
     }
 }
