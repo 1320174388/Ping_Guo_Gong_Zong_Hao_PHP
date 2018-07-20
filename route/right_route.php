@@ -93,6 +93,15 @@ Route::group('v1/right_module/', function(){
         'admin_route',
         'right_module/v1.controller.AdminController/adminList'
     );
+    /**
+     * 路由名称：apply_route
+     * 传值方式：PUT,
+     * 路由功能：修改管理员信息
+     */
+    Route::put(
+        'admin_route',
+        'right_module/v1.controller.AdminController/adminPut'
+    );
 
     // ---- 职位管理 ----
 

@@ -184,7 +184,7 @@ class ApplyController extends Controller
         // 判断是否发送：职位主键标识
         if(!$roleString) return returnResponse(1,'没有发送职位主键标识');
 
-        // 处理权限标识
+        // 处理职位标识
         $roleArr = explode(',',$roleString);
 
         // 引入Service代码,写入数据

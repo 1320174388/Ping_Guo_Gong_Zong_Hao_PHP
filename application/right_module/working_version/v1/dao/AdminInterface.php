@@ -20,4 +20,19 @@ interface AdminInterface
      * 创  建 : 2018/07/20 09:34
      */
     public function adminSelect();
+
+    /**
+     * 名  称 : adminUpdate()
+     * 功  能 : 声明：修改管理员信息
+     * 变  量 : --------------------------------------
+     * 输  入 : (String) $put['adminToken']      => '管理员标识';
+     * 输  入 : (String) $put['adminName']       => '管理员名称';
+     * 输  入 : (String) $put['adminPassward']   => '管理员密码';
+     * 输  入 : (String) $put['adminRePassword'] => '确认密码';
+     * 输  入 : (String) $put['roleString']      => '职位标识';
+     * 输  入 : (String) $roleArr                => '职位数组';
+     * 输  出 : ['msg'=>'success','data'=>'数据']
+     * 创  建 : 2018/07/20 14:58
+     */
+    public function adminUpdate($put,$roleArr);
 }
