@@ -26,7 +26,7 @@ class AdminValidate extends Validate
         'adminToken'      =>  'require|min:32|max:32',
         'adminName'       =>  'require|max:6',
         'adminPassward'   =>  'require|min:6|max:18',
-        'adminRePassword' =>  'require|confirm:applyPassward',
+        'adminRePassword' =>  'require|confirm:adminPassward',
         'roleString'      =>  'require',
     ];
     /**
