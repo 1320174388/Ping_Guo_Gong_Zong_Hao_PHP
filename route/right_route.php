@@ -91,6 +91,15 @@ Route::group('v1/right_module/', function(){
         'right_module/v1.controller.ApplyController/applyDel'
     );
 
+    // ---- 找回密码 ----
+
+    
+
+
+
+
+
+
     // ---- 管理列表 ----
 
     /**
