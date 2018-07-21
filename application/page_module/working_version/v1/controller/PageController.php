@@ -4,7 +4,7 @@
  *  文件名称 :  PageController.php
  *  创 建 者 :  Shi Guang Yu
  *  创建日期 :  2018/07/20 01:07
- *  文件描述 :  权限管理：管理员控制器
+ *  文件描述 :  后台管理，控制器
  *  历史记录 :  -----------------------
  */
 namespace app\page_module\working_version\v1\controller;
@@ -12,7 +12,7 @@ use think\Controller;
 use think\Request;
 use think\facade\Session;
 use app\login_module\working_version\v1\model\LoginModel;
-use app\login_module\working_version\v1\library\LoginLibrary;
+use app\page_module\working_version\v1\service\PageService;
 
 class PageController extends Controller
 {
@@ -79,6 +79,25 @@ class PageController extends Controller
         return "<script>
                     window.location.replace('{$url}?token={$array['data']}');
                </script>";
+    }
+
+    /**
+     * 名  称 : adminDoLogin()
+     * 功  能 : 执行用户登录操作
+     * 变  量 : --------------------------------------
+     * 输  入 : (String) $post['adminPhone']    => '手机号';
+     * 输  入 : (String) $post['adminPassword'] => '密码';
+     * 输  出 : --------------------------------------
+     * 创  建 : 2018/07/21 11:39
+     */
+    public function adminDoLogin(Request $request)
+    {
+        // 引入Service层代码
+        $res = (new PageService())->adminGet($request->post());
+        // 判断数据是否正确
+        if($res['msg']='error') return returnResponse(1,$res['data']);
+        // 返回正确数据
+        return returnResponse(0,$res['data'],true);
     }
 
     /**

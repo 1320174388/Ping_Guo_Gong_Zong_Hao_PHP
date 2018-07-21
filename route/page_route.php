@@ -35,6 +35,15 @@ Route::group('v1/page_module/', function(){
         'page_module/v1.controller.PageController/adminLogin'
     );
 
+    /**
+     * 路由名称：admin_do_login
+     * 传值方式：POST,
+     * 路由功能：执行用户登录操作
+     */
+    Route::get(
+        'admin_do_login',
+        'page_module/v1.controller.PageController/adminDoLogin'
+    );
 });
 
 // +---------------------------------------------
