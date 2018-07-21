@@ -11,7 +11,7 @@
 // +---------------------------------------------
 // : 前台接口
 // +---------------------------------------------
-Route::group('v1/right_module/', function(){
+Route::group('v1/page_module/', function(){
 
     // ---- 后台登录 ----
 
@@ -39,13 +39,13 @@ Route::group('v1/right_module/', function(){
 // +---------------------------------------------
 // : 功能接口,需要权限验证接口
 // +---------------------------------------------
-Route::group('v1/right_module/', function(){
+Route::group('v1/page_module/', function(){
 
 })->middleware('Login_v1_IsToken');
 
 // +---------------------------------------------
 // : 后台接口,需要权限验证接口
 // +---------------------------------------------
-Route::group('v1/right_module/', function(){
+Route::group('v1/page_module/', function(){
 
 })->middleware('Right_v1_IsAdmin');
