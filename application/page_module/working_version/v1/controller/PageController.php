@@ -64,4 +64,17 @@ class PageController extends Controller
                     window.location.replace('{$url}?token={$array['data']}');
                </script>";
     }
+
+    /**
+     * 名  称 : moduleList()
+     * 功  能 : 获取管理模块信息
+     * 变  量 : --------------------------------------
+     * 输  入 : --------------------------------------
+     * 输  出 : --------------------------------------
+     * 创  建 : 2018/07/21 10:29
+     */
+    public function moduleList()
+    {
+        return "<h1>获取管理模块信息</h1>";
+    }
 }

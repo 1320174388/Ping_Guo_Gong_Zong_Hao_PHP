@@ -29,11 +29,9 @@ class Right_v1_IsAdmin
         $httpKey = config('html_config.HTTP_KEY');
         // 获取请求头信息HttpKey值,判断Session信息是否存在
         $str = $request->header('http-key');
-        if(($str!==$httpKey)
-//            ||(!Session::get($strMd5))
-        )
+        if(($str!==$httpKey)||(!Session::get($strMd5)))
         {
-            return redirect('/');
+            return redirect('/v1/page_module/admin_preposition');
         }else{
             return $next($request);
         }

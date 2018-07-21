@@ -22,7 +22,7 @@ Route::group('v1/page_module/', function(){
      */
     Route::get(
         'admin_preposition',
-        'right_module/v1.controller.PageController/adminPreposition'
+        'page_module/v1.controller.PageController/adminPreposition'
     );
 
     /**
@@ -32,7 +32,7 @@ Route::group('v1/page_module/', function(){
      */
     Route::get(
         'admin_login',
-        'right_module/v1.controller.PageController/applyLogin'
+        'page_module/v1.controller.PageController/applyLogin'
     );
 });
 
@@ -47,5 +47,17 @@ Route::group('v1/page_module/', function(){
 // : 后台接口,需要权限验证接口
 // +---------------------------------------------
 Route::group('v1/page_module/', function(){
+
+    // ---- 后台首页 ----
+
+    /**
+     * 路由名称：module_role
+     * 传值方式：GET,
+     * 路由功能：获取管理模块信息
+     */
+    Route::get(
+        'module_role',
+        'page_module/v1.controller.PageController/moduleList'
+    );
 
 })->middleware('Right_v1_IsAdmin');
