@@ -71,4 +71,22 @@ class ApplyService
         // 返回数据
         return returnData('success',$res['data']);
     }
+
+    /**
+     * 名  称 : applyDel()
+     * 功  能 : 删除申请管理员
+     * 变  量 : --------------------------------------
+     * 输  入 : (String) $applyToken => '管理员申请标识';
+     * 输  出 : --------------------------------------
+     * 创  建 : 2018/07/1 09:59
+     */
+    public function applyDel($applyToken)
+    {
+        // 执行数据删除
+        $res = (new ApplyDao())->applyDelete($applyToken);
+        // 验证数据
+        if($res['msg']=='error') return returnData('error',$res['data']);
+        // 返回数据
+        return returnData('success',$res['data']);
+    }
 }

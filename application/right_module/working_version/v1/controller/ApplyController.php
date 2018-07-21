@@ -193,7 +193,50 @@ class ApplyController extends Controller
         if($res['msg']=='error')
             // 返回错误数据
             return returnResponse(1,$res['data']);
+
+        // 发送短信
+        $textMessage = '您在中春果业平台的申请管理员操作，审核结果：';
+        $textMessage.= '【审核通过】。如非本人操作，请忽略本条短信。';
+        $res = (new qcloudSmsLibrary())->sendMessige(
+            $res['data'],
+            $textMessage
+        );
+
         // 返回正确数据
-        return returnResponse(0,$res['data'],true);
+        return returnResponse(0,'设置成功',true);
+    }
+
+    /**
+     * 名  称 : applyDel()
+     * 功  能 : 删除申请管理员接口
+     * 变  量 : --------------------------------------
+     * 输  入 : (String) $applyToken => '管理员申请标识';
+     * 输  出 : {"errNum":0,"retMsg":"设置成功","retData":true}
+     * 创  建 : 2018/07/21 09:56
+     */
+    public function applyDel(Request $request)
+    {
+        // 获取管理员标识
+        $applyToken = $request->delete('applyToken');
+        // 判断是否发送：管理员申请标识
+        if(!$applyToken) return returnResponse(1,'没有发送管理员申请标识');
+
+        // 引入Service代码,写入数据
+        $res = (new ApplyService())->applyDel($applyToken);
+        // 验证写入数据
+        if($res['msg']=='error')
+            // 返回错误数据
+            return returnResponse(1,$res['data']);
+
+        // 发送短信
+        $textMessage = '您在中春果业平台的申请管理员操作，审核结果：';
+        $textMessage.= '【审核失败】。如非本人操作，请忽略本条短信。';
+        (new qcloudSmsLibrary())->sendMessige(
+            $res['data'],
+            $textMessage
+        );
+
+        // 返回正确数据
+        return returnResponse(0,'设置成功',true);
     }
 }

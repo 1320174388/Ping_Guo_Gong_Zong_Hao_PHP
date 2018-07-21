@@ -127,11 +127,47 @@ class ApplyDao implements ApplyInterface
 
             // 提交事务
             Db::commit();
-            return returnData('success','设置成功');
+            return returnData('success',$applyData['apply_passward']);
         } catch (\Exception $e) {
             // 回滚事务
             Db::rollback();
             return returnData('error','设置失败');
         }
+    }
+
+    /**
+     * 名  称 : applyDelete()
+     * 功  能 : 声明：删除申请的管理员
+     * 变  量 : --------------------------------------
+     * 输  入 : (String) $applyToken => '管理员申请标识';
+     * 输  出 : ['msg'=>'success','data'=>'数据']
+     * 创  建 : 2018/07/21 10:00
+     */
+    public function applyDelete($applyToken)
+    {
+        // 启动事务
+        Db::startTrans();
+        try {
+
+            // 获取申请的管理员信息
+            $applyData = ApplyModel::get($applyToken);
+
+            // 判断此管理员是否申请
+            if(!$applyData) return returnData('error','没有此申请');
+
+            // 删除管理员申请信息
+            $applyData->delete();
+
+            Db::commit();
+            return returnData('success',$applyData['apply_passward']);
+
+        } catch (\Exception $e) {
+
+            // 回滚事务
+            Db::rollback();
+            return returnData('error','设置失败');
+
+        }
+
     }
 }

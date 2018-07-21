@@ -81,6 +81,15 @@ Route::group('v1/right_module/', function(){
         'apply_route',
         'right_module/v1.controller.ApplyController/applyPut'
     );
+    /**
+     * 路由名称：apply_route
+     * 传值方式：DELETE,
+     * 路由功能：删除申请管理员接口
+     */
+    Route::delete(
+        'apply_route',
+        'right_module/v1.controller.ApplyController/applyDel'
+    );
 
     // ---- 管理列表 ----
 

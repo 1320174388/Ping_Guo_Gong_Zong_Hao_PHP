@@ -38,4 +38,14 @@ interface ApplyInterface
      * 创  建 : 2018/07/19 16:54
      */
     public function applyUpdate($applyToken,$roleArr);
+
+    /**
+     * 名  称 : applyDelete()
+     * 功  能 : 声明：删除申请的管理员
+     * 变  量 : --------------------------------------
+     * 输  入 : (String) $applyToken => '管理员申请标识';
+     * 输  出 : ['msg'=>'success','data'=>'数据']
+     * 创  建 : 2018/07/21 10:00
+     */
+    public function applyDelete($applyToken);
 }
