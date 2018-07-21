@@ -101,6 +101,9 @@ class ApplyDao implements ApplyInterface
             $adminModel->admin_phone    = $applyData['apply_phone'];
             $adminModel->admin_time     = $applyData['apply_time'];
 
+            // 获取电话号码
+            $phone = $applyData['apply_phone'];
+
             // 写入数据
             $res = $adminModel->save();
             // 判断是否写入成功
@@ -127,7 +130,7 @@ class ApplyDao implements ApplyInterface
 
             // 提交事务
             Db::commit();
-            return returnData('success',$applyData['apply_passward']);
+            return returnData('success',$phone);
         } catch (\Exception $e) {
             // 回滚事务
             Db::rollback();
@@ -155,11 +158,14 @@ class ApplyDao implements ApplyInterface
             // 判断此管理员是否申请
             if(!$applyData) return returnData('error','没有此申请');
 
+            // 获取电话号码
+            $phone = $applyData['apply_phone'];
+
             // 删除管理员申请信息
             $applyData->delete();
 
             Db::commit();
-            return returnData('success',$applyData['apply_passward']);
+            return returnData('success',$phone);
 
         } catch (\Exception $e) {
 
