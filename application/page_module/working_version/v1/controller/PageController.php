@@ -7,7 +7,7 @@
  *  文件描述 :  权限管理：管理员控制器
  *  历史记录 :  -----------------------
  */
-namespace app\right_module\working_version\v1\controller;
+namespace app\page_module\working_version\v1\controller;
 use think\Controller;
 use think\Request;
 use app\login_module\working_version\v1\library\LoginLibrary;
