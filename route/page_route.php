@@ -40,7 +40,7 @@ Route::group('v1/page_module/', function(){
      * 传值方式：POST,
      * 路由功能：执行用户登录操作
      */
-    Route::get(
+    Route::post(
         'admin_do_login',
         'page_module/v1.controller.PageController/adminDoLogin'
     );
