@@ -95,7 +95,7 @@ class PageController extends Controller
         // 引入Service层代码
         $res = (new PageService())->adminGet($request->post());
         // 判断数据是否正确
-        if($res['msg']='error') return returnResponse(1,$res['data']);
+        if($res['msg']=='error') return returnResponse(1,$res['data']);
         // 返回正确数据
         return returnResponse(0,$res['data'],true);
     }
