@@ -85,6 +85,7 @@ class PageController extends Controller
      * 名  称 : adminDoLogin()
      * 功  能 : 执行用户登录操作
      * 变  量 : --------------------------------------
+     * 输  入 : (String) $heder['user-key']     => '用户身份标识';
      * 输  入 : (String) $post['adminPhone']    => '手机号';
      * 输  入 : (String) $post['adminPassword'] => '密码';
      * 输  出 : --------------------------------------
@@ -96,6 +97,13 @@ class PageController extends Controller
         $res = (new PageService())->adminGet($request->post());
         // 判断数据是否正确
         if($res['msg']=='error') return returnResponse(1,$res['data']);
+
+        // 获取用户标识
+        $userKey = $request->header('user-key');
+        // 获取域名独立Session信息
+        $strMd5 = md5($_SERVER["SERVER_NAME"].'login_admin_token');
+        Session::set($strMd5,$userKey);
+
         // 返回正确数据
         return returnResponse(0,$res['data'],true);
     }
