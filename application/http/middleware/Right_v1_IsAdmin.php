@@ -10,6 +10,7 @@
 namespace app\http\middleware;
 use think\facade\Session;
 use think\Request;
+use app\login_module\working_version\v1\model\LoginModel;
 
 class Right_v1_IsAdmin
 {
@@ -29,6 +30,16 @@ class Right_v1_IsAdmin
         $httpKey = config('html_config.HTTP_KEY');
         // 获取请求头信息HttpKey值,判断Session信息是否存在
         $str = $request->header('http-key');
+        // 获取用户标识
+        $userKey = $request->header('user-key');
+        // 获取最高管理员信息
+        $loginModel = LoginModel::get(1);
+        // 判断是不是最高管理员
+        if(($loginModel)&&($userKey==$loginModel['user_token']))
+        {
+            return $next($request);
+        }
+        // 判断权限
         if(($str!==$httpKey)||(!Session::get($strMd5)))
         {
             return redirect('/v1/page_module/admin_preposition');
