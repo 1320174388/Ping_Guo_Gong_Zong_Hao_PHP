@@ -15,14 +15,14 @@ use app\login_module\working_version\v1\library\LoginLibrary;
 class PageController extends Controller
 {
     /**
-     * 名  称 : applyPreposition()
+     * 名  称 : adminPreposition()
      * 功  能 : 管理员登录前置接口
      * 变  量 : --------------------------------------
      * 输  入 : --------------------------------------
      * 输  出 : --------------------------------------
      * 创  建 : 2018/07/16 11:15
      */
-    public function applyPreposition()
+    public function adminPreposition()
     {
         // 获取项目域名
         $projectUrl = $_SERVER["REQUEST_SCHEME"].'://';
@@ -41,14 +41,14 @@ class PageController extends Controller
     }
 
     /**
-     * 名  称 : applyLogin()
+     * 名  称 : adminLogin()
      * 功  能 : 显示管理员登录页面
      * 变  量 : --------------------------------------
      * 输  入 : --------------------------------------
      * 输  出 : --------------------------------------
      * 创  建 : 2018/07/16 11:15
      */
-    public function applyLogin(Request $request)
+    public function adminLogin(Request $request)
     {
         // 获取code
         $code = $request->get('code');

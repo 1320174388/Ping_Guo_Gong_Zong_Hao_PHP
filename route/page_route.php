@@ -32,7 +32,7 @@ Route::group('v1/page_module/', function(){
      */
     Route::get(
         'admin_login',
-        'page_module/v1.controller.PageController/applyLogin'
+        'page_module/v1.controller.PageController/adminLogin'
     );
 });
 
