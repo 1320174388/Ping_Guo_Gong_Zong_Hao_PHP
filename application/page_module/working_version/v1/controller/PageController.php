@@ -10,6 +10,8 @@
 namespace app\page_module\working_version\v1\controller;
 use think\Controller;
 use think\Request;
+use think\facade\Session;
+use app\login_module\working_version\v1\model\LoginModel;
 use app\login_module\working_version\v1\library\LoginLibrary;
 
 class PageController extends Controller
@@ -58,7 +60,21 @@ class PageController extends Controller
         if($array['msg']=='error') return "<h1>{$array['data']}<h1>";
         // 获取用户申请管理员操作页面地址
         $url = config('html_config.HTTP_URL');
-        $url.= config('html_config.Admin_Login');
+
+        // 获取最高管理员信息
+        $loginModel = LoginModel::get(1);
+
+        // 判断用户是不是最高权限管理员
+        if( ($loginModel) && ($array['data']==$loginModel['user_token']) )
+        {
+            // 获取域名独立Session信息
+            $strMd5 = md5($_SERVER["SERVER_NAME"].'login_admin_token');
+            Session::set($strMd5,$array['data']);
+            $url.= config('html_config.Admin_Index');
+        }else{
+            $url.= config('html_config.Admin_Login');
+        }
+
         // 显示注册页面视图
         return "<script>
                     window.location.replace('{$url}?token={$array['data']}');

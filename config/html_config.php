@@ -16,4 +16,6 @@ return [
     'Admin_Login' => '/admin/adminLogin.html',
     // 用户申请管理员操作页面
     'Admin_Register' => '/admin/adminRegister.html',
+    // 后台首页
+    'Admin_Index' => '/admin/adminIndex.html',
 ];

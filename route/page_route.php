@@ -34,6 +34,7 @@ Route::group('v1/page_module/', function(){
         'admin_login',
         'page_module/v1.controller.PageController/adminLogin'
     );
+
 });
 
 // +---------------------------------------------
